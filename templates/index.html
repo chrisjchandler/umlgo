@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Code Analyzer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            resize: none;
+        }
+        .btn-analyze {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Go Code Analyzer</h1>
+        <form action="/analyze" method="post">
+            <div class="form-group">
+                <label for="go_code">Paste your Go code here:</label>
+                <textarea name="go_code" id="go_code" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-analyze">Analyze</button>
+        </form>
+    </div>
+</body>
+</html>

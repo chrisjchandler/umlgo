@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Analysis Result</h1>
+        <h3>UML Code:</h3>
+        <pre id="uml_code">{{ uml_code }}</pre>
+        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <a href="/" class="btn btn-primary mt-3">Back</a>
+    </div>
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("uml_code").innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                alert("Error copying to clipboard: ", err);
+            });
+        }
+    </script>
+</body>
+</html>

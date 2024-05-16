@@ -1,0 +1,48 @@
+package parser
+
+import (
+    "fmt"
+    "go/ast"
+    "go/parser"
+    "go/token"
+    "strings"
+)
+
+func ParseAndGenerateUML(code string) (string, error) {
+    fset := token.NewFileSet()
+
+    // Parse the Go code string
+    node, err := parser.ParseFile(fset, "", code, parser.ParseComments)
+    if err != nil {
+        return "", fmt.Errorf("error parsing Go code: %v", err)
+    }
+
+    // Traverse the AST to extract function descriptions and generate UML actions
+    var umlActions []string
+    for _, decl := range node.Decls {
+        fn, ok := decl.(*ast.FuncDecl)
+        if !ok {
+            continue
+        }
+
+        // Extract function name and description
+        fnName := fn.Name.Name
+        var fnDescription string
+        if fn.Doc != nil {
+            fnDescription = fn.Doc.Text()
+        }
+
+        // Generate UML action based on function name and description
+        umlAction := fmt.Sprintf("+ %s()", fnName)
+        if fnDescription != "" {
+            umlAction += " : " + strings.TrimSpace(fnDescription)
+        }
+
+        umlActions = append(umlActions, umlAction)
+    }
+
+    // Generate UML code with extracted actions
+    umlCode := fmt.Sprintf("@startuml\nclass DummyClass {\n    %s\n}\n@enduml", strings.Join(umlActions, "\n    "))
+
+    return umlCode, nil
+}

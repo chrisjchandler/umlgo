@@ -104,8 +104,9 @@ Input example:
 
 ![Input](input_tool.png "input")
 
-UML Output example:
-![output](uml_output.png "output")
-
 Tool Output:
 ![Tool_output](tool_output.png "Rendered in plantUML")
+
+
+UML Output example:
+![output](uml_output.png "output")
